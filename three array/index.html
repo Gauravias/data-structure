@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Find Top Three Repeated Array Elements</title>
+</head>
+
+<body>
+    
+
+    <hero class="grid px-5 lg:px-14 grid-cols-1 lg:grid-cols-2 items-center justify-items-center h-screen">
+        <div class="flex flex-col items-center lg:items-start gap-20">
+            <div class="w-10/12">
+                <h1 class="text-4xl font-bold text-slate-800">Find Top Three Repeated Arrays by Gaurav Tripathi</h1>
+                <p class="text-xl text-slate-800 mt-4">
+                    an array is a data structure consisting of a collection of elements (values or variables), of same memory size, each identified by at least one array index or key. An array is stored such that the position of each element can be computed from its index tuple by a mathematical formula.
+                    This is a simple web app to find top three repeated arrays in a given array.
+                </p>
+            </div>
+            <div>
+                <a href="#find">
+                    <button
+                        class="bg-slate-900 hover:bg-rose-600 text-white px-14 py-4 rounded-md text-xl hover:animate-bounce font-semibold">
+                        Get Started
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="hero.png"
+                class="rounded-xl w-11/12 border-2 border-slate-900 border-opacity-50 shadow-xl" alt="Hero" />
+        </div>
+    </hero>
+    <div class="container mx-auto">
+        <div class="flex justify-center items-center h-screen">
+            <div class="xl:w-1/3 lg:w-1/2 md:w-2/3 w-3/4">
+                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div id="find" class="mb-10">
+                        <h1 class="text-2xl font-bold text-center">
+                            Find Top Three Repeated Arrays By Gaurav Tripathi
+                        </h1>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="array">
+                            Enter Array
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="array" name="array" type="text" placeholder="e.g. 3 4 2 3 16 3 15 16 15 15 16 2 3" onchange="reset()"/>
+                        <p class="text-red-500 text-xs italic" id="array-error"></p>
+                    </div>
+                    <div class="flex items-center justify-end">
+                        <button
+                            class="bg-slate-900 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit" id="submit" onclick="findTopThree()">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="mt-4 text-left hidden" id="result-div">
+                        <h1 class="text-2xl font-bold">Result</h1>
+                        <div class="mt-4">
+                            <p id="result"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        // responsive menu bar
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            var github = document.getElementById("github");
+            if (
+                menu.classList.contains("hidden") &&
+                github.classList.contains("hidden")
+            ) {
+                menu.classList.remove("hidden");
+                github.classList.remove("hidden");
+            } else {
+                menu.classList.add("hidden");
+                github.classList.add("hidden");
+            }
+        }
+
+        // get value from input
+        function getArray() {
+            var array = document.getElementById("array").value;
+            var array = array.split(" ");
+            return array;
+        }
+
+        // validate input
+        function validateArray(array) {
+
+            if (array.length < 3) {
+                return false;
+            }
+            for (var i = 0; i < array.length; i++) {
+                if (isNaN(array[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function reset(){
+            var array = getArray();
+            var arrayError = document.getElementById("array-error");
+            var resultDiv = document.getElementById("result-div");
+            var result = document.getElementById("result");
+            if (!validateArray(array)) {
+                arrayError.innerHTML = "Please enter a valid array";
+                resultDiv.classList.add("hidden");
+            } else {
+                arrayError.innerHTML = "";
+                resultDiv.classList.add("hidden");
+            }
+        }
+
+        class Array {
+            constructor(value, count) {
+                this.value = value;
+                this.count = count;
+            }
+        }
+
+        // find top three repeated arrays
+        function findTopThree() {
+            var array = getArray();
+            var isValid = validateArray(array);
+            if (isValid) {
+                var result = [];
+                var resultDiv = document.getElementById("result-div");
+                var resultElement = document.getElementById("result");
+                var arrayError = document.getElementById("array-error");
+                arrayError.innerHTML = "";
+                resultDiv.classList.remove("hidden");
+                resultElement.innerHTML = "";
+                var arrayCount = {};
+                for (var i = 0; i < array.length; i++) {
+                    if (arrayCount[array[i]]) {
+                        arrayCount[array[i]]++;
+                    } else {
+                        arrayCount[array[i]] = 1;
+                    }
+                }
+                var arrayCountArray = [];
+                for (var key in arrayCount) {
+                    arrayCountArray.push(new Array(key, arrayCount[key]));
+                }
+                arrayCountArray.sort(function (a, b) {
+                    console.log("https://sauravhathi.github.io/lpu-cse/");
+                    return b.count - a.count;
+                });
+                for (var i = 0; i < 3; i++) {
+                    result.push(arrayCountArray[i].value);
+                }
+                for (var i = 0; i < result.length; i++) {
+                    resultElement.innerHTML += `<span class="bg-slate-900 text-white text-xl px-4 py-1 rounded-md  mr-2">${result[i]}</span>`;
+                }
+            } else {
+                var arrayError = document.getElementById("array-error");
+                arrayError.innerHTML = "Please enter valid array";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

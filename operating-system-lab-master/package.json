@@ -1,0 +1,20 @@
+{
+  "name": "osvis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvasjs": "^1.8.3",
+    "cors": "^2.8.5",
+    "d3": "^6.5.0",
+    "express.js": "^1.0.0",
+    "http": "0.0.1-security",
+    "http-server": "^0.12.3",
+    "https": "^1.0.0"
+  }
+}

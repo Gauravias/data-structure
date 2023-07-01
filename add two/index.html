@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Add two numbers on a represented linked list</title>
+  </head>
+
+  <body class="bg-slate-900 text-white">
+    
+
+    <hero
+      class="grid px-5 lg:px-14 grid-cols-1 lg:grid-cols-2 items-center justify-items-center h-screen"
+    >
+      <div class="flex flex-col items-center lg:items-start gap-20">
+        <div class="w-10/12">
+          <h1 class="text-4xl font-bold">Add Two Numbers Linked List by Gaurav Tripathi</h1>
+          <p class="text-xl mt-4">
+            This is a simple web app that adds two numbers represented by a
+            linked list.
+          </p>
+        </div>
+        <div>
+          <a href="#find">
+            <button
+              class="bg-slate-800 hover:bg-blue-600 text-white px-14 py-4 rounded-md text-xl hover:animate-bounce font-semibold border border-blue-600"
+            >
+              Get Started
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:block">
+        <img
+          src="hero.png"
+          class="rounded-xl w-11/12 p-4 border-2 border-white border-opacity-50 shadow-xl"
+          alt="Hero"
+        />
+      </div>
+    </hero>
+    <div class="container mx-auto border-t border-blue-600">
+      <div class="flex justify-center items-center h-screen">
+        <div class="xl:w-1/3 lg:w-1/2 md:w-2/3 w-3/4">
+          <div id="find" class="mb-10">
+            <h1 class="text-2xl font-bold text-center">
+              Add Two Numbers Linked List
+            </h1>
+          </div>
+          <div
+            class="bg-slate-800 shadow-md rounded px-8 pt-6 pb-8 mb-4 border border-blue-600"
+          >
+            <div class="mb-4">
+              <label
+                class="block text-slate-50 text-sm font-bold mb-2"
+                for="list1"
+              >
+                Enter the first numbers
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="list1"
+                name="list1"
+                type="text"
+                placeholder="e.g. 5 6 3"
+                onchange="reset()"
+                value="5 6 3"
+              />
+              <p class="text-red-500 text-xs mt-2" id="list-error"></p>
+              <label
+                class="block text-slate-50 text-sm font-bold mb-2"
+                for="list2"
+              >
+                Enter the second numbers
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="list2"
+                name="list2"
+                type="text"
+                placeholder="e.g. 8 4 2"
+                onchange="reset()"
+                value="8 4 2"
+              />
+              <p class="text-red-500 text-xs mt-2" id="list-error"></p>
+            </div>
+            <div class="flex items-center justify-end">
+              <button
+                class="bg-slate-50 hover:bg-slate-700 hover:text-slate-50 text-slate-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                id="submit"
+                onclick="addTwoNumber()"
+              >
+                Submit
+              </button>
+            </div>
+            <hr class="my-4" />
+            <div class="mt-4 text-left hidden" id="result-div">
+              <h1 class="text-xl font-bold">Result</h1>
+              <div class="mt-4">
+                <p id="result"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+    <script>
+      // responsive menu bar
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        var github = document.getElementById("github");
+        if (
+          menu.classList.contains("hidden") &&
+          github.classList.contains("hidden")
+        ) {
+          menu.classList.remove("hidden");
+          github.classList.remove("hidden");
+        } else {
+          menu.classList.add("hidden");
+          github.classList.add("hidden");
+        }
+      }
+
+      // get value from input
+      function getList() {
+        var list1 = document.getElementById("list1").value;
+        var list2 = document.getElementById("list2").value;
+        // remove beginning and ending spaces and split the string
+        list1 = list1.trim().split(" ");
+        list2 = list2.trim().split(" ");
+        // if list is empty
+        list1 = list1.filter((item) => item !== "");
+        list2 = list2.filter((item) => item !== "");
+        // return the lists
+        return [list1, list2];
+      }
+
+      // create a linked list
+      class ListNode {
+        constructor(val, next = null) {
+          this.val = val;
+          this.next = next;
+        }
+      }
+
+      // add two numbers represented by linked list and return the result
+      var addTwoNumbers = function (l1, l2) {
+        let sub = 0;
+        let head = new ListNode(l1.val + l2.val, null);
+        let sum = head;
+        if (sum.val > 9) {
+          sum.val = sum.val % 10;
+          sub = 1;
+        }
+        while (l1.next || l2.next) {
+          let num1 = 0;
+          let num2 = 0;
+          if (l1.next) {
+            l1 = l1.next;
+            num1 = l1.val;
+          }
+
+          if (l2.next) {
+            l2 = l2.next;
+            num2 = l2.val;
+          }
+
+          if (num1 + num2 + sub > 9) {
+            sum.next = new ListNode((num1 + num2 + sub) % 10, null);
+            sum = sum.next;
+            sub = 1;
+          } else {
+            sum.next = new ListNode(num1 + num2 + sub, null);
+            sum = sum.next;
+            sub = 0;
+          }
+        }
+        if (sub == 1) {
+          sum.next = new ListNode(1, null);
+        }
+        return head;
+      };
+
+      // validate the array 
+      function validateArray(list1, list2) {
+        if (list1.length == 0 || list2.length == 0) {
+          return false;
+        }
+
+        for (var i = 0; i < list1.length; i++) {
+          if (isNaN(list1[i])) {
+            return false;
+          }
+        }
+
+        for (var i = 0; i < list2.length; i++) {
+          if (isNaN(list2[i])) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      // reset the result div
+      function reset() {
+        var [list1, list2] = getList();
+
+        var listError = document.getElementById("list-error");
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+
+        // validate input
+        if (!validateArray(list1, list2)) {
+          console.log(list1, list2);
+          listError.innerHTML = "Please enter a valid list";
+          resultDiv.classList.add("hidden");
+        } else {
+          listError.innerHTML = "";
+          resultDiv.classList.add("hidden");
+        }
+      }
+
+      // clr the result div
+      function clr() {
+        var result = document.getElementById("result");
+        result.innerHTML = "";
+      }
+
+      // add two numbers
+      function addTwoNumber() {
+        var [list1, list2] = getList();
+        var result = document.getElementById("result");
+        var resultDiv = document.getElementById("result-div");
+        var listError = document.getElementById("list-error");
+
+        // validate input
+        if (!validateArray(list1, list2)) {
+          listError.innerHTML = "Please enter a valid list";
+          resultDiv.classList.add("hidden");
+        } else {
+          listError.innerHTML = "";
+          resultDiv.classList.remove("hidden");
+
+          while (list1.length < list2.length) {
+            list1.unshift(0);
+          }
+          while (list2.length < list1.length) {
+            list2.unshift(0);
+          }
+
+          var div = document.createElement("div");
+          div.classList.add("grid", "grid-cols-2", "gap-4", "mt-4");
+
+          var ul = document.createElement("ul");
+          ul.classList.add("flex", "flex-wrap", "gap-2");
+
+          var carry = 0;
+          var sum = [];
+          for (var i = list1.length - 1; i >= 0; i--) {
+            var temp = parseInt(list1[i]) + parseInt(list2[i]) + carry;
+            if (temp > 9) {
+              carry = 1;
+              sum.unshift(temp % 10);
+            } else {
+              carry = 0;
+              sum.unshift(temp);
+            }
+          }
+          if (carry == 1) {
+            sum.unshift(1);
+          }
+
+          var li = document.createElement("li");
+          li.classList.add(
+            "flex",
+            "items-center",
+            "bg-slate-900",
+            "border",
+            "border-blue-600",
+            "rounded",
+            "justify-around",
+            "text-white",
+            "text-2xl"
+          );
+          li.innerHTML = sum.join(" ");
+          ul.appendChild(li);
+          div.appendChild(ul);
+          result.appendChild(div);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Union and Intersection of two Linked Lists</title>
+  </head>
+
+  <body>
+    
+    <div class="container mx-auto">
+      <div class="flex justify-center h-screen items-center -mt-10">
+        <div class="xl:w-1/3 lg:w-1/2 md:w-2/3 w-3/4">
+          <div class="mb-10">
+            <h1 class="text-2xl font-bold text-center text-slate-800">
+              Union and Intersection of two Linked Lists By Gaurav Tripathi
+            </h1>
+          </div>
+          <div class="bg-slate-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+              <label
+                class="block text-white text-sm font-bold mb-2"
+                for="list1"
+              >
+                Enter the List
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-slate-900 leading-tight focus:outline-none focus:shadow-outline"
+                id="list1"
+                name="list1"
+                type="text"
+                placeholder="e.g. 10 15 4 20"
+                onchange="reset()"
+              />
+              <p class="text-slate-50 text-xs italic" id="list-error1"></p>
+              <label
+                class="block text-white text-sm font-bold mb-2 mt-2"
+                for="list2"
+              >
+                Enter the List
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-slate-900 leading-tight focus:outline-none focus:shadow-outline"
+                id="list2"
+                name="list2"
+                type="text"
+                placeholder="e.g. 8 4 2 10"
+                onchange="reset()"
+              />
+              <p class="text-slate-50 text-xs italic" id="list-error2"></p>
+            </div>
+            <div class="flex items-center justify-end">
+              <button
+                class="bg-slate-600 hover:bg-slate-700 text-white font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded"
+                type="submit"
+                id="submit"
+                onclick="findUnionAndIntersection()"
+              >
+                Submit
+              </button>
+            </div>
+            <div class="mt-4 text-left hidden" id="result-div">
+              <hr class="border-pink-400" />
+              <h1 class="text-xl text-white font-bold mt-2">Result</h1>
+              <div class="mt-4">
+                <p id="result"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // responsive menu bar
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        var github = document.getElementById("github");
+        if (
+          menu.classList.contains("hidden") &&
+          github.classList.contains("hidden")
+        ) {
+          menu.classList.remove("hidden");
+          github.classList.remove("hidden");
+        } else {
+          menu.classList.add("hidden");
+          github.classList.add("hidden");
+        }
+      }
+
+      // get value from input
+      function getList() {
+        var list1 = document.getElementById("list1").value;
+        var list2 = document.getElementById("list2").value;
+
+        // remove beginning and ending spaces and split the string
+        list1 = list1.trim().split(" ");
+        list2 = list2.trim().split(" ");
+        // if list is empty
+        list1 = list1.filter((item1) => item1 !== "");
+        list2 = list2.filter((item2) => item2 !== "");
+
+        // return the list
+        return [list1, list2];
+      }
+
+      // validate input
+      function validateArray(list1, list2) {
+        if (list1.length === 0) {
+          return false;
+        }
+        if (list2.length === 0) {
+          return false;
+        }
+        for (var i = 0; i < list1.length; i++) {
+          if (isNaN(list1[i])) {
+            return false;
+          }
+        }
+        for (var i = 0; i < list2.length; i++) {
+          if (isNaN(list2[i])) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      // onchange event of input
+      function reset() {
+        var [list1, list2] = getList();
+        var listError1 = document.getElementById("list-error1");
+        var listError2 = document.getElementById("list-error2");
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+
+        if (!validateArray(list1, list2)) {
+          listError1.innerHTML = "Please enter a valid list";
+          listError2.innerHTML = "Please enter a valid list";
+          resultDiv.classList.add("hidden");
+        } else {
+          listError1.innerHTML = "";
+          listError2.innerHTML = "";
+          resultDiv.classList.add("hidden");
+        }
+      }
+
+      // find union and intersection
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.next = null;
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null;
+        }
+
+        insert(data) {
+          const node = new Node(data);
+          if (this.head === null) {
+            this.head = node;
+          } else {
+            let current = this.head;
+            while (current.next !== null) {
+              current = current.next;
+            }
+            current.next = node;
+          }
+        }
+
+        // union of two linked lists
+        union(list) {
+          const unionList = new LinkedList();
+          const set = new Set();
+          let current = this.head;
+          while (current !== null) {
+            set.add(current.data);
+            current = current.next;
+          }
+          current = list.head;
+          while (current !== null) {
+            set.add(current.data);
+            current = current.next;
+          }
+          set.forEach((data) => {
+            unionList.insert(data);
+          });
+          return unionList;
+        }
+
+        // intersection of two linked lists
+        intersection(list) {
+          const intersectionList = new LinkedList();
+          const set = new Set();
+          let current = this.head;
+          while (current !== null) {
+            set.add(current.data);
+            current = current.next;
+          }
+          current = list.head;
+          while (current !== null) {
+            if (set.has(current.data)) {
+              intersectionList.insert(current.data);
+            }
+            current = current.next;
+          }
+          return intersectionList;
+        }
+      }
+
+      // findUnionAndIntersection function to find union and intersection of two linked lists and display the result on the page
+      function findUnionAndIntersection() {
+        var [list1, list2] = getList();
+        clr();
+        var listError1 = document.getElementById("list-error1");
+        var listError2 = document.getElementById("list-error2");
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+
+        // validate input
+        if (!validateArray(list1, list2)) {
+          listError1.innerHTML = "Please enter a valid list";
+          listError2.innerHTML = "Please enter a valid list";
+          resultDiv.classList.add("hidden");
+
+
+        } else {
+          listError1.innerHTML = "";
+          listError2.innerHTML = "";
+          resultDiv.classList.remove("hidden");
+
+          // create two linked lists
+          const linkedList1 = new LinkedList();
+          const linkedList2 = new LinkedList();
+
+          // insert elements in linked lists
+          list1.forEach((data) => {
+            linkedList1.insert(data);
+          });
+
+          // insert elements in linked lists
+          list2.forEach((data) => {
+            linkedList2.insert(data);
+          });
+
+          // find union and intersection
+          const unionList = linkedList1.union(linkedList2);
+          const intersectionList = linkedList1.intersection(linkedList2);
+
+          var div = document.getElementById("result");
+          div.classList.add("grid", "grid-cols-1", "gap-4", "mt-4");
+          var hr = document.createElement("hr");
+          hr.classList.add("border-pink-400");
+
+          var ulAfterList1 = document.createElement("ul");
+          ulAfterList1.classList.add("flex", "flex-wrap","flex-cols-2", "gap-2");
+          var ulAfterList2 = document.createElement("ul");
+          ulAfterList2.classList.add("flex", "flex-wrap", "gap-2");
+          var ulAfterUnion = document.createElement("ul");
+          ulAfterUnion.classList.add("flex", "flex-wrap", "gap-2");
+          var ulAfterIntersection = document.createElement("ul");
+          ulAfterIntersection.classList.add("flex", "flex-wrap", "gap-2");
+
+          var h1BeforeList1 = document.createElement("h1");
+          h1BeforeList1.classList.add("text-md", "text-white", "font-semibold");
+          h1BeforeList1.innerHTML = "List 1: ";
+          var h1BeforeList2 = document.createElement("h1");
+          h1BeforeList2.classList.add("text-md", "text-white", "font-semibold");
+          h1BeforeList2.innerHTML = "List 2: ";
+          var h1BeforeUnion = document.createElement("h1");
+          h1BeforeUnion.classList.add("text-md", "text-white", "font-semibold");
+          h1BeforeUnion.innerHTML = "Union: ";
+          var h1BeforeIntersection = document.createElement("h1");
+          h1BeforeIntersection.classList.add(
+            "text-md",
+            "text-white",
+            "font-semibold"
+          );
+          h1BeforeIntersection.innerHTML = "Intersection: ";
+
+          // display list 1
+          let current = unionList.head;
+          while (current !== null) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "flex",
+              "items-center",
+              "w-10",
+              "h-10",
+              "bg-slate-700",
+              "rounded",
+              "justify-around",
+              "text-white"
+            );
+            li.innerHTML = current.data;
+            ulAfterUnion.appendChild(li);
+            current = current.next;
+          }
+
+          // display list 2
+          current = intersectionList.head;
+          while (current !== null) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "flex",
+              "items-center",
+              "w-10",
+              "h-10",
+              "bg-slate-700",
+              "rounded",
+              "justify-around",
+              "text-white"
+            );
+            li.innerHTML = current.data;
+            ulAfterIntersection.appendChild(li);
+            current = current.next;
+          }
+
+          // display union
+          current = linkedList1.head;
+          while (current !== null) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "flex",
+              "items-center",
+              "w-10",
+              "h-10",
+              "bg-slate-700",
+              "rounded",
+              "justify-around",
+              "text-white"
+            );
+            li.innerHTML = current.data;
+            ulAfterList1.appendChild(li);
+            current = current.next;
+          }
+
+          // display intersection
+          current = linkedList2.head;
+          while (current !== null) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "flex",
+              "items-center",
+              "w-10",
+              "h-10",
+              "bg-slate-700",
+              "rounded",
+              "justify-around",
+              "text-white"
+            );
+            li.innerHTML = current.data;
+            ulAfterList2.appendChild(li);
+            current = current.next;
+          }
+
+          div.appendChild(h1BeforeList1);
+          div.appendChild(ulAfterList1);
+          div.appendChild(h1BeforeList2);
+          div.appendChild(ulAfterList2);
+          div.appendChild(hr);
+          div.appendChild(h1BeforeUnion);
+          div.appendChild(ulAfterUnion);
+          div.appendChild(h1BeforeIntersection);
+          div.appendChild(ulAfterIntersection);
+
+          resultDiv.classList.remove("hidden");
+        }
+      }
+
+      // clear function to clear the result
+      function clr() {
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+        result.innerHTML = "";
+        resultDiv.classList.add("hidden");
+      }
+
+
+    </script>
+  </body>
+</html>

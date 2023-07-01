@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<!--    <script src="node_modules/canvasjs/dist/canvasjs.js"></script>-->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="client_manual_input.js"></script>
+    <title>COMPARISON</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <!-- load CSS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"
+    />
+    <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css" />
+    <link rel="stylesheet" href="styling.css" />
+    <!-- <style>
+      .form-container {
+        width: 500px!important;
+        clear: both!important;
+      }
+
+      .form-container input {
+        width: 100%!important;
+        clear: both!important;
+      }
+    </style> -->
+    <!-- Templatemo style -->
+  </head>
+
+  <body>
+
+
+
+  <nav class="navbar">
+    <a class="nav-center" href="index.html">OS VIRTUAL LAB</a>
+    <div class="disc-dropdown">
+      <button class="disc-dropbtn">GOTO</button>
+      <div class="disc-dropdown-content">
+        <a href="disk_scheduling_index.html" >DISK SCHEDULING ALGORITHMS</a>
+          
+        <a href="disk_scheduling_fcfs.html">FCFS Algorithm</a>
+        <a href="disk_scheduling_sstf.html">SSTF Algorithm</a>
+        <a href="disk_scheduling_scan.html">SCAN Algorithm</a>
+        <a href="disk_scheduling_cscan.html">CSCAN Algorithm</a>
+        <a href="disk_scheduling_look.html">LOOK Algorithm</a>
+        <a href="disk_scheduling_clook.html">CLOOK Algorithm</a>
+        <a href="disk_scheduling_lifo.html">LIFO Algorithm</a>
+        
+        
+      </div>
+    </div>
+  </nav>
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <header class="text-center tm-site-header">
+            <h1 class=" tm-site-title">COMPARISON OF ALGORITHMS</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div class="container tm-container-2">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="tm-welcome-text">Let's Explore</h2>
+        </div>
+      </div>
+      <div class="row tm-section-mb">
+        <div class="col-lg-12">
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/description.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark tm-timeline-description">
+                  <h3 class="tm-text-green tm-font-400">
+                    Advantages of the algorithms:
+                  </h3>
+                  <p>
+                    <ol>
+                    <li>FCFS:
+                    <ul>
+                      <li>First Come First Serve algorithm has a very simple logic, it executes the process requests one by one in the sequence they arrive.</li>
+                      <li>In FCFS eventually, each and every process gets a chance to execute, so no starvation occur.</li>
+                    </ul>
+                    </li>
+                  <li>SSTF:
+                    <ul>
+                      <li>The total seek time is reduced compared to First Come First Serve.</li>
+                      <li>SSTF improves and increases throughput.</li>
+                    </ul>
+                  </li>
+                  <li>SCAN:
+                    <ul>
+                      <li>Scan scheduling algorithm is simple and easy to understand and implement.</li>
+                      <li>Starvation is avoided in SCAN algorithm.</li>
+                    </ul>
+                  </li>
+                  <li>CSCAN:
+                    <ul>
+                      <li>C-SCAN Algorithm is the successor and the improved version of the SCAN scheduling Algorithm.</li>
+                      <li>The waiting time for the cylinders which were just visited by the head is reduced in C-SCAN compared to the SCAN Algorithm.</li>
+                    </ul>
+                  </li>
+                  <li>LOOK:
+                    <ul>
+                      <li>If there are no requests left to be services the Head will not move to the end of the disk unlike SCAN algorithm.</li>
+                      <li>Starvation is avoided in LOOK scheduling algorithm.</li>
+                    </ul>
+                  </li>
+                  <li>CLOOK:
+                    <ul>
+                      <li>In C-LOOK the head does not have to move till the end of the disk if there are no requests to be serviced.</li>
+                      <li>C-LOOK provides better performance when compared to LOOK Algorithm.</li>
+                    </ul>
+                  </li>
+                  <li>LIFO:
+                    <ul>
+                      <li>Last In First Out algorithm has a very simple logic, it executes the process requests one by one in the reverse sequence they arrive.</li>
+                      <li>In LIFO eventually, each and every process gets a chance to execute, so no starvation occur.</li>
+                    </ul>
+                  </li>
+                    </ol>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/flow.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark-light tm-timeline-description">
+                  <h3 class="tm-text-cyan tm-font-400">
+                    Disadvantages of the algorithms:
+                  </h3>
+                  <p>
+                  <ol>
+                    <li>FCFS:
+                      <ul>
+                        <li>This scheduling algorithm is non-preemptive, which means the process can’t be stopped in middle of execution and will run it’s full course.</li>
+                        <li>The throughput of FCFS is not very efficient.</li>
+                      </ul>
+                    </li>
+                    <li>SSTF:
+                      <ul>
+                        <li>In SSTF there is an overhead of finding out the closest request.</li>
+                        <li>In SSTF high variance is present in response time and waiting time.</li>
+                      </ul>
+                    </li>
+                    <li>SCAN:
+                      <ul>
+                        <li>Long waiting time occurs for the cylinders which are just visited by the head.</li>
+                        <li>In SCAN the head moves till the end of the disk despite the absence of requests to be serviced.</li>
+                      </ul>
+                    </li>
+                    <li>CSCAN:
+                      <ul>
+                        <li>More seek movements are caused in C-SCAN compared to SCAN Algorithm.</li>
+                        <li>In C-SCAN even if there are no requests left to be serviced the Head will still travel to the end of the disk unlike SCAN algorithm.</li>
+                      </ul>
+                    </li>
+                    <li>LOOK:
+                      <ul>
+                        <li>Overhead of finding the end requests is present.</li>
+                        <li>Cylinders which are just visited by Head have to wait for long time.</li>
+                      </ul>
+                    </li>
+                    <li>CLOOK:
+                      <ul>
+                        <li>In C-LOOK an overhead of finding the end requests is present.</li>
+                      </ul>
+                    </li>
+                  <li>LIFO:
+                    <ul>
+                      <li>This scheduling algorithm is non-preemptive, which means the process can’t be stopped in middle of execution and will run it’s full course.</li>
+                      <li>The throughput of LIFO is not very efficient.</li>
+                    </ul>
+                  </li>
+                  </ol>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/implementation.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark tm-timeline-description">
+                  <h3 class="tm-text-yellow tm-font-400">
+                    Implementation of the algorithm:
+                  </h3>
+                  <div class="form-container-res">
+                    <label>Enter the request sequence:</label>
+                    <input id="Sequence" oninput="resetComparisonResult()" placeholder="Eg: 50, 55, 80 (0 <= x <= 9999)"/>
+                    <p></p>
+                    <label>Enter the initial head position:</label>
+                    <input id="Head" oninput="resetComparisonResult()" placeholder="Eg: 63 (0 <= x <= 9999)"/>
+                    <p></p>
+                    <div class="center-run">
+                      <button class="btn btn-outline-primary" onclick="comparison_click()" id="COMPARISON">COMPARE</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/output.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark-light tm-timeline-description">
+                  <h3 class="tm-text-orange tm-font-400">
+                    
+                    Output of the algorithm:
+                    
+                  </h3>
+                  
+                  <div class="comparison-output">
+                    <span style="display: none; font-weight: 500" id="comaprisonAnswers"></span>
+                    <div id="chartContainer" style="display: none"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  row -->
+    </div>
+    <!-- .container -->
+
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="js/templatemo-script.js"></script>
+  </body>
+</html>

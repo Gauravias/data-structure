@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Pancake Sort</title>
+  </head>
+
+  <body class="bg-blue-300 text-slate-900">
+    
+
+    <hero
+      class="grid px-5 lg:px-14 grid-cols-1 lg:grid-cols-2 items-center justify-items-center h-screen"
+    >
+      <div class="flex flex-col items-center lg:items-start gap-20">
+        <div class="w-10/12">
+          <h1 class="text-4xl font-bold">Pancake Sort</h1>
+          <p class="text-xl mt-4">
+            Pancake sorting is the colloquial term for the mathematical problem
+            of sorting a disordered stack of pancakes in order of size when a
+            spatula can be inserted at any point in the stack and used to flip
+            all pancakes above it. A pancake number is the minimum number of
+            flips required for a given number of pancakes.
+          </p>
+        </div>
+        <div>
+          <a href="#find">
+            <button
+              class="bg-blue-200 hover:bg-white text-slate-900 px-14 py-4 rounded-md text-xl hover:animate-bounce font-semibold border border-white hover:border-transparent"
+            >
+              Get Started
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:block">
+        <img
+          src="hero.png"
+          class="rounded-xl w-11/12 p-4 border-2 border-white border-opacity-50 shadow-xl"
+          alt="Hero"
+        />
+      </div>
+    </hero>
+    <div class="container mx-auto">
+      <div class="flex justify-center items-center h-screen">
+        <div class="xl:w-1/3 lg:w-1/2 md:w-2/3 w-3/4">
+          <div id="find" class="mb-10">
+            <h1 class="text-2xl font-bold text-center">
+              Pancake Sort
+            </h1>
+          </div>
+          <div
+            class="bg-blue-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 border border-white"
+          >
+            <div class="mb-4">
+              <label
+                class="block text-slate-900 text-sm font-bold mb-2"
+                for="list"
+              >
+                Enter the list of numbers
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="list"
+                name="list"
+                type="text"
+                placeholder="e.g. 23 10 20 11 12 6 7"
+                onchange="reset()"
+                value="23 10 20 11 12 6 7"
+              />
+              <p class="text-red-500 text-xs mt-2" id="list-error"></p>
+            </div>
+            <div class="flex items-center justify-end">
+              <button
+                class="bg-slate-50 hover:bg-slate-700 hover:text-slate-50 text-slate-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                id="submit"
+                onclick="pancakeSort()"
+              >
+                Submit
+              </button>
+            </div>
+            <hr class="my-4 border-blue-600" />
+            <div class="mt-4 text-left hidden" id="result-div">
+              <h1 class="text-xl font-bold">Result</h1>
+              <div class="mt-4">
+                <p id="result"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      // responsive menu bar
+      function toggleMenu() {
+        var menu = document.getElementById("menu");
+        var github = document.getElementById("github");
+        if (
+          menu.classList.contains("hidden") &&
+          github.classList.contains("hidden")
+        ) {
+          menu.classList.remove("hidden");
+          github.classList.remove("hidden");
+        } else {
+          menu.classList.add("hidden");
+          github.classList.add("hidden");
+        }
+      }
+
+      // get value from input
+      function getList() {
+        var list = document.getElementById("list").value;
+        // remove beginning and ending spaces and split the string
+        list = list.trim().split(" ");
+        // if list is empty
+        list = list.filter((item) => item !== "");
+        // return the list
+        return list;
+      }
+
+      function validateArray(list) {
+        if (list.length == 0) {
+          return false;
+        }
+
+        for (var i = 0; i < list.length; i++) {
+          if (isNaN(list[i])) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      function reset() {
+        var list = getList();
+        var listError = document.getElementById("list-error");
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+
+        // validate input
+        if (!validateArray(list)) {
+          listError.innerHTML = "Please enter a valid list";
+          resultDiv.classList.add("hidden");
+        } else {
+          listError.innerHTML = "";
+          resultDiv.classList.add("hidden");
+        }
+      }
+
+      function clr() {
+        var result = document.getElementById("result");
+        result.innerHTML = "";
+      }
+
+      function flip(arr, i) {
+        var temp,
+          start = 0;
+        while (start < i) {
+          temp = arr[start];
+          arr[start] = arr[i];
+          arr[i] = temp;
+          start++;
+          i--;
+        }
+      }
+
+      function findMax(arr, n) {
+        var mi, i;
+        for (mi = 0, i = 0; i < n; ++i) {
+          if (arr[i] > arr[mi]) {
+            mi = i;
+          }
+        }
+        return mi;
+      }
+
+      function pancakeSortFn(arr, n) {
+        for (var curr_size = n; curr_size > 1; --curr_size) {
+          var mi = findMax(arr, curr_size);
+          if (mi != curr_size - 1) {
+            flip(arr, mi);
+            flip(arr, curr_size - 1);
+          }
+        }
+      }
+
+      function pancakeSort() {
+        clr();
+        var list = getList();
+        var arr = list.map(Number);
+        var resultDiv = document.getElementById("result-div");
+        var result = document.getElementById("result");
+
+        // validate input
+        if (!validateArray(list)) {
+          resultDiv.classList.add("hidden");
+          return;
+        } else {
+          var div = document.createElement("div");
+          div.classList.add("grid", "grid-cols-1", "gap-2");
+
+          var ulList = document.createElement("ul");
+          ulList.classList.add("flex", "flex-wrap", "gap-2");
+
+          var h1LI = document.createElement("h1");
+          h1LI.classList.add("text-md", "text-slate-900", "font-semibold");
+          h1LI.innerHTML = "Unsorted List";
+
+          for (var i = 0; i < list.length; i++) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "bg-slate-50",
+              "text-slate-900",
+              "py-2",
+              "px-4",
+              "rounded",
+              "focus:outline-none",
+              "focus:shadow-outline"
+            );
+            li.innerHTML = list[i];
+            ulList.appendChild(li);
+          }
+          div.appendChild(h1LI);
+          div.appendChild(ulList);
+
+          // sort the list
+          pancakeSortFn(arr, arr.length);
+
+          var ulList = document.createElement("ul");
+          ulList.classList.add("flex", "flex-wrap", "gap-2");
+
+          var h1Pancake = document.createElement("h1");
+          h1Pancake.classList.add("text-md", "text-slate-900", "font-semibold");
+          h1Pancake.innerHTML = "Pancake Sort";
+
+          for (var i = 0; i < arr.length; i++) {
+            var li = document.createElement("li");
+            li.classList.add(
+              "bg-slate-50",
+              "text-slate-900",
+              "py-2",
+              "px-4",
+              "rounded",
+              "focus:outline-none",
+              "focus:shadow-outline"
+            );
+            li.innerHTML = arr[i];
+            ulList.appendChild(li);
+          }
+          div.appendChild(h1Pancake);
+          div.appendChild(ulList);
+
+          resultDiv.classList.remove("hidden");
+          result.appendChild(div);
+        }
+      }
+    </script>
+  </body>
+</html>

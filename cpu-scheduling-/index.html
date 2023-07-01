@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>CPU scheduling algorithms By Gaurav Tripathi</title>
+  </head>
+  <body>
+    <div
+      class="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100 sm:items-center sm:pt-0"
+    >
+      <div class="">
+        <h1 class="font-bold text-3xl mb-4">CPU Scheduling Algorithms</h1>
+      </div>
+      <div class="border border-gray-400 p-8 rounded bg-slate-700">
+        <div class="form-group">
+          <label for="algorithm" class="block text-white text-sm font-bold mb-2"
+            >Select Algorithm</label
+          >
+          <select
+            name="algorithm"
+            id="algorithm"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onchange="onChange()"
+          >
+            <option value="fcfs" d class="text-center font-bold mb-4">
+              FCFS
+            </option>
+
+            <option
+              value="priorityNonPreemptive"
+              class="text-center font-bold mb-4"
+            >
+              Priority Non Preemptive
+            </option>
+            <option
+              value="priorityPreemptive"
+              class="text-center font-bold mb-4"
+            >
+              Priority Preemptive
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label
+            for="arrival_time"
+            class="block text-white text-sm font-bold mb-2 mt-4"
+            >Arrival Time</label
+          >
+          <input
+            type="text"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="arrival_time"
+            placeholder="e.g. 0 1 2 3"
+          />
+        </div>
+        <div class="form-group">
+          <label
+            for="burst_time "
+            class="block text-white text-sm font-bold mb-2 mt-4"
+            >Burst Time</label
+          >
+          <input
+            type="text"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="burst_time"
+            placeholder="e.g. 0 1 2 3"
+          />
+        </div>
+        <div class="form-group" id="priority" style="display: none">
+          <label
+            for="priority"
+            class="block text-white text-sm font-bold mb-2 mt-4"
+            >Priority</label
+          >
+          <input
+            type="text"
+            class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="priorityn"
+            placeholder="e.g. 0 1 2 3"
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+            onclick="onClick()"
+          >
+            Submit
+          </button>
+        </div>
+        <div id="result"></div>
+        <div id="avg_waiting_time" class="text-white"></div>
+        <div id="avg_turn_around_time" class="text-white"></div>
+
+        <div>
+          <h1
+            class="font-semibold text-center text-1xl mt-3 text-white"
+            id="gantttile"
+          ></h1>
+          <div
+            id="gantt_chart"
+            class="text-white grid justify-items-center mt-3"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

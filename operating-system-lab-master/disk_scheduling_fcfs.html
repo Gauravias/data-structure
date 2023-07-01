@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!--    <script src="node_modules/canvasjs/dist/canvasjs.js"></script>-->
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <script src="client_manual_input.js"></script>
+  <script src="client_file_input.js"></script>
+
+  <script>
+
+    function manualOrFileInputCheck() {
+      if(document.getElementById("manualCheck").checked) {
+        document.getElementById("ifManualInput").style.display = 'block';
+        document.getElementById("ifManualOutput").style.display = 'block';
+      } else {
+        document.getElementById("ifManualInput").style.display = 'none';
+        document.getElementById("ifManualOutput").style.display = 'none';
+      }
+      if(document.getElementById("fileCheck").checked) {
+        document.getElementById("ifFileInput").style.display = 'block';
+        document.getElementById("ifFileOutput").style.display = 'block';
+      } else {
+        document.getElementById("ifFileInput").style.display = 'none';
+        document.getElementById("ifFileOutput").style.display = 'none';
+      }
+    }
+  </script>
+  <title>FCFS</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <!-- load CSS -->
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"
+  />
+  <!-- Google web font "Open Sans" -->
+
+
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="css/templatemo-style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="styling.css" />
+
+
+  <!-- <style>
+    .form-container {
+      width: 500px!important;
+      clear: both!important;
+    }
+
+    .form-container input {
+      width: 400px!important;
+      clear: both!important;
+    } -->
+  </style>
+  <!-- Templatemo style -->
+</head>
+
+  <body>
+
+
+
+    <nav class="navbar">
+      <a class="nav-center" href="index.html">OS VIRTUAL LAB</a>
+      <div class="disc-dropdown">
+        <button class="disc-dropbtn">GOTO</button>
+        <div class="disc-dropdown-content">
+          <a href="disk_scheduling_index.html" >DISK SCHEDULING ALGORITHMS</a>
+
+
+          <a href="disk_scheduling_sstf.html">SSTF Algorithm</a>
+          <a href="disk_scheduling_scan.html">SCAN Algorithm</a>
+          <a href="disk_scheduling_cscan.html">CSCAN Algorithm</a>
+          <a href="disk_scheduling_look.html">LOOK Algorithm</a>
+          <a href="disk_scheduling_clook.html">CLOOK Algorithm</a>
+          <a href="disk_scheduling_lifo.html">LIFO Algorithm</a>
+          <a href="disk_scheduling_comparison.html">COMPARISON</a>
+
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <header class="text-center tm-site-header">
+            <h1 class=" tm-site-title">FIRST COME FIRST SERVE ALGORITHM</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div class="container tm-container-2">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="tm-welcome-text">Let's Explore</h2>
+        </div>
+      </div>
+      <div class="row tm-section-mb">
+        <div class="col-lg-12">
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/description.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark tm-timeline-description">
+                  <h3 class="tm-text-green tm-font-400">
+                    Description of the algorithm:
+                  </h3>
+                  <p>
+                    FCFS is the simplest disk scheduling algorithm. As the name
+                    suggests, this algorithm entertains requests in the order
+                    they arrive in the disk queue. The algorithm looks very fair
+                    and there is no starvation (all requests are serviced
+                    sequentially) but generally, it does not provide the fastest
+                    service.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/flow.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark-light tm-timeline-description">
+                  <h3 class="tm-text-cyan tm-font-400">
+                    Flow of the algorithm:
+                  </h3>
+                  <p>
+                    <ol>
+                      <li>
+                        Let Request array represents an array storing indexes of tracks that have been requested in ascending order of their time of arrival. ‘head’ is the position of disk head.
+                      </li>
+                      <li>
+                        Let us one by one take the tracks in default order and calculate the absolute distance of the track from the head.
+                      </li>
+                      <li>
+                        Increment the total seek count with this distance.
+                      </li>
+                      <li>
+                        Currently serviced track position now becomes the new head position.
+                      </li>
+                      <li>
+                        Go to step 2 until all tracks in request array have not been serviced.
+                      </li>
+                    </ol>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/implementation.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark tm-timeline-description">
+                  <h3 class="tm-text-yellow tm-font-400">
+                    Implementation of the algorithm:
+                  </h3>
+					  <input type="radio" onclick="javascript:manualOrFileInputCheck();" name="manualFile" id="manualCheck" /><label style="color: #f9443e"><b>&nbsp;&nbsp;Manually Enter The Inputs&nbsp;&nbsp;&nbsp;</b></label>
+					  <input type="radio" onclick="javascript:manualOrFileInputCheck();" name="manualFile" id="fileCheck" /><label style="color: #f9443e"><b>&nbsp;&nbsp;Upload File&nbsp;&nbsp;&nbsp;</b></label>
+					  <p></p>
+                    <div class="form-container-res" id="ifManualInput" style="display:none">
+                      <label>Enter the request sequence:</label>
+                      <input id="Sequence" oninput="resetFcfsResult()" placeholder="Eg: 50, 55, 80 (0 <= x <= 9999)"/>
+                      <p></p>
+                      <label>Enter the initial head position:</label>
+                      <input id="Head" oninput="resetFcfsResult()" placeholder="Eg: 63 (0 <= x <= 9999)"/>
+                      <p></p>
+                      <div class="center-run">
+                        <button class="btn btn-outline-primary" onclick="fcfs_click()" id="FCFS">Run FCFS</button>
+                      </div>
+                    </div>
+					<div class="form-container" id="ifFileInput" style="display:none; text-align: center">
+                        <label>Format of input</label>
+                        <br>
+                        <img src="images/file_example.png" class="resp-img">
+                        <br>
+                        <br>
+						<input type="file" style="text-align: center" onclick="resetFileInputFcfs()" id="file-selector" accept=".txt" multiple>
+                        <br>
+                        <br>
+                        <input type="button" class="btn btn-outline-primary" onclick="fileFcfs();" value="Run FCFS">
+					</div>
+                </div>
+              </div>
+            </div>
+            <div class="tm-timeline-connector-vertical"></div>
+          </div>
+
+          <div class="tm-timeline-item">
+            <div class="tm-timeline-item-inner">
+              <img
+                src="assets/website_pages/output.png"
+                alt="Image"
+                class="rounded-circle tm-img-timeline"
+              />
+              <div class="tm-timeline-connector">
+                <p class="mb-0">&nbsp;</p>
+              </div>
+              <div class="tm-timeline-description-wrap">
+                <div class="tm-bg-dark-light tm-timeline-description">
+                  <h3 class="tm-text-orange tm-font-400">
+
+                    Output of the algorithm:
+
+                  </h3>
+
+                  <div class="fcfs-output-man" id="ifManualOutput" style="display:none">
+                    <label>Total seek time of the algorithm is:&nbsp;</label><span style="font-weight: bolder; color: #5789ff" id="fcfs_totalSeekCount"></span>
+                    <p></p>
+                    <label>Sequence of operations' processing:&nbsp;</label><span style="font-weight: bolder; color: #5789ff" id="fcfs_finalOrder"></span>
+                    <p></p>
+                    <label>Average seek time of the algorithm is:&nbsp;</label><span style="font-weight: bolder; color: #5789ff" id="fcfs_averageSeekCount"></span>
+                    <p></p>
+                    <p></p>
+                    <div id="chartContainer" style="display: none"></div>
+                    <div id="betweenButton">
+
+
+
+
+                    </div>
+                  </div>
+                  <div class="fcfs-output-file" id="ifFileOutput" style="display: none">
+                    <div class="swiper-container"><!--swiper container [You can change the style of the container at will-->
+                      <div class="swiper-wrapper" id="swiperWrapper">
+
+
+                      </div>
+                      <div class="swiper-button-prev swiper-button-white"></div><!--forward button-->
+                      <div class="swiper-button-next swiper-button-white"></div><!--Back button-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  row -->
+    </div>
+    <!-- .container -->
+
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="js/templatemo-script.js"></script>
+  </body>
+</html>

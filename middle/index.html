@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Find Middle of the Linked List</title>
+</head>
+
+<body>
+    
+    <hero class="grid px-5 lg:px-14 grid-cols-1 lg:grid-cols-2 items-center justify-items-center h-screen">
+        <div class="flex flex-col items-center lg:items-start gap-20">
+            <div class="w-10/12">
+                <h1 class="text-4xl font-bold text-slate-800">Find Middle of the Linked List By Gaurav Tripathi</h1>
+                <p class="text-xl text-slate-800 mt-4">
+                    Linked List can be defined as collection of objects called nodes that are randomly stored in the memory.
+                    A node contains two fields i.e. data stored at that particular address and the pointer which contains the address of the next node in the memory.
+                    The last node of the list contains pointer to the null.
+                </p>
+            </div>
+            <div>
+                <a href="#find">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-14 py-4 rounded-md text-xl hover:animate-bounce font-semibold">
+                        Get Started
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="hidden lg:block">
+            <img src="hero.png" class="rounded-xl w-11/12 border-2 border-blue-600 border-opacity-50 shadow-xl"
+                alt="Hero" />
+        </div>
+    </hero>
+    <div class="container mx-auto">
+        <div class="flex justify-center items-center h-screen">
+            <div class="xl:w-1/3 lg:w-1/2 md:w-2/3 w-3/4">
+                <div id="find" class="mb-10">
+                    <h1 class="text-2xl font-bold text-center">
+                        Find Middle of the Linked List
+                    </h1>
+                </div>
+                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="list">
+                            Enter the Linked List
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="list" name="list" type="text" placeholder="e.g. 124 567 834 123 534"
+                            onchange="reset()" />
+                        <p class="text-red-500 text-xs italic" id="list-error"></p>
+                    </div>
+                    <div class="flex items-center justify-end">
+                        <button
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit" id="submit" onclick="findMiddle()">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="mt-4 text-left hidden" id="result-div">
+                        <h1 class="text-xl font-bold">Result</h1>
+                        <div class="mt-4">
+                            <p id="result"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script>
+
+        // responsive menu bar
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            var github = document.getElementById("github");
+            if (
+                menu.classList.contains("hidden") &&
+                github.classList.contains("hidden")
+            ) {
+                menu.classList.remove("hidden");
+                github.classList.remove("hidden");
+            } else {
+                menu.classList.add("hidden");
+                github.classList.add("hidden");
+            }
+        }
+
+        // get value from input
+        function getList() {
+
+            var list = document.getElementById("list").value;
+            // remove beginning and ending spaces and split the string
+            list = list.trim().split(" ");
+            // if list is empty
+            list = list.filter((item) => item !== "");
+
+            // return the list
+            return list;
+        }
+
+        // validate input
+        function validateArray(list) {
+
+            if (list.length == 0) {
+                return false;
+            }
+            for (var i = 0; i < list.length; i++) {
+                if (isNaN(list[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function reset() {
+            var list = getList();
+            var listError = document.getElementById("list-error");
+            var resultDiv = document.getElementById("result-div");
+            var result = document.getElementById("result");
+
+            // validate input
+            if (!validateArray(list)) {
+                listError.innerHTML = "Please enter a valid list";
+                resultDiv.classList.add("hidden");
+            } else {
+                listError.innerHTML = "";
+                resultDiv.classList.add("hidden");
+            }
+        }
+
+        class Node {
+            constructor(data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+                this.size = 0;
+            }
+
+            add(data) {
+                var node = new Node(data);
+                var current;
+
+                if (this.head == null) {
+                    this.head = node;
+                } else {
+                    current = this.head;
+
+                    while (current.next) {
+                        current = current.next;
+                    }
+
+                    current.next = node;
+                }
+
+                this.size++;
+            }
+
+            // find middle of the linked list
+            findMiddle() {
+                var fast = this.head;
+                var slow = this.head;
+                while (fast !== null && fast.next !== null) {
+                    fast = fast.next.next;
+                    slow = slow.next;
+                }
+                return slow.data;
+            }
+        }
+
+        function findMiddle() {
+            var list = getList();
+            var listError = document.getElementById("list-error");
+            var resultDiv = document.getElementById("result-div");
+            var result = document.getElementById("result");
+
+            // validate input
+            if (!validateArray(list)) {
+
+                listError.innerHTML = "Please enter a valid list";
+                resultDiv.classList.add("hidden");
+
+            } else {
+
+                listError.innerHTML = "";
+                // create linked list
+                var linkedList = new LinkedList();
+
+                // add elements to the linked list
+                for (var i = 0; i < list.length; i++) {
+                    linkedList.add(list[i]);
+                }
+
+                // find middle of the linked list
+                var middle = linkedList.findMiddle();
+
+                var ul = document.createElement("ul");
+                var indexOfListUl = document.createElement("ul");
+                ul.classList.add("flex", "flex-row", "justify-center", "items-center", "gap-4", "mt-4");
+                indexOfListUl.classList.add("flex", "flex-row", "justify-center", "items-center", "gap-4", "mt-4");
+
+                var temp_index;
+                
+                // print the linked list and show the middle element in red color
+                for (var i = 0; i < list.length; i++) {
+                    var li = document.createElement("li");
+                    var indexOfListLi = document.createElement("li");
+                    li.innerHTML = list[i];
+                    indexOfListLi.innerHTML = i;
+
+                    // if the element is middle element then change the color to red
+                    if (list[i] == middle) {
+                        li.classList.add("bg-rose-600", "text-white", "rounded-md", "w-10", "h-10", "flex", "justify-center", "items-center");
+                        indexOfListLi.classList.add("font-bold", "text-rose-600", "w-10", "h-10", "flex", "justify-center", "items-center");
+                        temp_index = i;
+                    }
+                    else {
+                        li.classList.add("bg-slate-900", "text-white", "rounded-md", "w-10", "h-10", "flex", "justify-center", "items-center");
+                        indexOfListLi.classList.add("w-10", "h-10", "flex", "justify-center", "items-center");
+                    }
+
+                    // append the elements to the ul tag
+                    ul.appendChild(li);
+                    // append the index of the elements to the ul tag
+                    indexOfListUl.appendChild(indexOfListLi);
+                }
+
+                result.innerHTML = "";
+                result.appendChild(ul);
+                result.appendChild(indexOfListUl);
+
+                // print the middle element
+                var p = document.createElement("p");
+                p.classList.add("mt-4");
+                p.innerHTML = "The middle of the list is <span class=\"font-bold text-rose-600\">" + middle + "</span> at index <span class=\"font-bold text-rose-600\">" + temp_index + "</span>";
+                result.appendChild(p);
+
+                // remove hidden class from result div
+                resultDiv.classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+
+</html>
+

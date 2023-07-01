@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="aa5Qak8R1XHyNVwr8IWpsCYXu3WJlHhK";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("aa5Qak8R1XHyNVwr8IWpsCYXu3WJlHhK");
+      analytics.page("Disc Scheduling Index");
+      }}();
+    </script>
+ 
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="stylecard.css" />
+
+<!--    <link rel="stylesheet" href="styling.css" />-->
+    <link rel="stylesheet" href="diskIndex.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="style_swiper.css" />
+
+    <title>Disk Scheduling Algo</title>
+    <link rel="icon" href="images/favicon.ico" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="nav-center" href="index.html">OS VIRTUAL LAB</a>
+    </nav>
+
+    <h1>DISK SCHEDULING ALGORITHMS</h1>
+
+    <div class="carding">
+      <div class="containern row">
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #85ff6e">FCFS<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                FCFS is the simplest of all the Disk Scheduling Algorithms. In
+                FCFS, the requests are addressed in the order they arrive in the
+                disk queue.
+              </p>
+              <a href="disk_scheduling_fcfs.html" onclick="fcfs()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #0b3bfc">SSTF<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                In SSTF (Shortest Seek Time First), requests having shortest
+                seek time are executed first.
+              </p>
+              <a href="disk_scheduling_sstf.html" onclick="sstf()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #ff6cfb">SCAN<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                In SCAN algorithm the disk arm moves into a particular direction
+                and services the requests coming in its path.
+              </p>
+              <a href="disk_scheduling_scan.html" onclick="scan()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #ff413f">CSCAN<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                The disk arm moves in a circular fashion and this algorithm is
+                also similar to SCAN algorithm and hence it is known as C-SCAN
+                (Circular SCAN).
+              </p>
+              <a href="disk_scheduling_cscan.html" onclick="cscan()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="images/youtube.png" alt="" />
+              <!-- <h3 style="color: #ff8d04">Video</h3> -->
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Watch to learn how to deep dive into the world of Disk Scheduling Algorithms.</p>
+              <a href="https://youtu.be/wfD3LCKLk0M">Watch</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #ff9b04">LOOK<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                Here, the disk arm in spite of going to the end of the disk goes
+                only to the last request to be serviced in front of the head and
+                then reverses its direction from there only.
+              </p>
+              <a href="disk_scheduling_look.html" onclick="look()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #a800f7">CLOOK<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                In CLOOK, the disk arm in spite of going to the end goes only to
+                the last request to be serviced in front of the head and then
+                from there goes to the other end’s last request.
+              </p>
+              <a href="disk_scheduling_clook.html" onclick="clook()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #00ffdd">LIFO<br>Algorithm</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                 LIFO (Last In First Out) is a method for handling data structures
+                where the last element is processed first and the first element
+                is processed last.
+              </p>
+              <a href="disk_scheduling_lifo.html" onclick="lifo()">Explore</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardn col-lg-4">
+          <div class="face face1">
+            <div class="content">
+              <img src="" alt="" />
+              <h3 style="color: #ffffff">COMPARISON</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>
+                ANALYSIS of all the 7 Algorithms. Let's check, which
+                is the MOST OPTIMAL !!!
+                
+              </p>
+              <a href="disk_scheduling_comparison.html">Explore</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="devs">
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+      <div class="swiper-container">
+        <h1 class="swiper-heading">DEVELOPERS</h1>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/300_300_Riyank.jpg" alt="" />
+            <h2>Riyank Makwana</h2>
+            <h3>19BCP107</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images/sahil image.jpg" alt="" />
+            <h2>Sahil Panchasara</h2>
+            <h3>19BCP115</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images/300_300_saum.jpg" alt="" />
+            <h2>Saumya Patel</h2>
+            <h3>19BCP117</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images/300_300_Uday-01.png" alt="" />
+            <h2>Uday Khokhariya</h2>
+            <h3>19BCP135</h3>
+          </div>
+          <div class="swiper-slide">
+            <img src="images/300_300_Yash.jpg" alt="" />
+            <h2>Yash Patel</h2>
+            <h3>19BCP143</h3>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <script>
+        var swiper = new Swiper(".swiper-container", {
+          effect: "coverflow",
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: "auto",
+          coverflowEffect: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+          },
+          loop: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+        });
+      </script>
+
+      <script>
+        function fcfs() {
+          analytics.track("FCFS clicked")
+        }
+
+        function sstf() {
+          analytics.track("SSTF clicked")
+        }
+
+        function scan() {
+          analytics.track("SCAN clicked")
+        }
+
+        function cscan() {
+          analytics.track("CSCAN clciked")
+        }
+
+        function look() {
+          analytics.track("LOOK clicked")
+        }
+
+        function clook() {
+          analytics.track("CLOOK clicked")
+        }
+
+        function lifo() {
+          analytics.track("LIFO clicked")
+        }
+      </script>
+    </div>
+  </body>
+</html>
